@@ -1,0 +1,903 @@
+ASN_MODULE_SRCS=	\
+	Criticality.c	\
+	Presence.c	\
+	ProcedureCode.c	\
+	ProtocolIE-ID.c	\
+	TriggeringMessage.c	\
+	ProtocolIE-Container.c	\
+	ProtocolIE-SingleContainer.c	\
+	ProtocolIE-Field.c	\
+	ProtocolIE-ContainerPair.c	\
+	ProtocolIE-FieldPair.c	\
+	ProtocolIE-ContainerList.c	\
+	ProtocolIE-ContainerPairList.c	\
+	E2AP-PDU.c	\
+	InitiatingMessage.c	\
+	SuccessfulOutcome.c	\
+	UnsuccessfulOutcome.c	\
+	AMFName.c	\
+	Cause.c	\
+	CauseE2node.c	\
+	CauseMisc.c	\
+	CauseProtocol.c	\
+	CauseRICrequest.c	\
+	CauseRICservice.c	\
+	CauseTransport.c	\
+	CriticalityDiagnostics.c	\
+	CriticalityDiagnostics-IE-List.c	\
+	CriticalityDiagnostics-IE-Item.c	\
+	E2nodeComponentConfiguration.c	\
+	E2nodeComponentConfigurationAck.c	\
+	E2nodeComponentInterfaceType.c	\
+	E2nodeComponentID.c	\
+	E2nodeComponentInterfaceE1.c	\
+	E2nodeComponentInterfaceF1.c	\
+	E2nodeComponentInterfaceNG.c	\
+	E2nodeComponentInterfaceS1.c	\
+	E2nodeComponentInterfaceX2.c	\
+	E2nodeComponentInterfaceXn.c	\
+	E2nodeComponentInterfaceW1.c	\
+	E2AP-IEs_ENB-ID.c	\
+	ENB-ID-Choice.c	\
+	ENGNB-ID.c	\
+	GlobalE2node-ID.c	\
+	GlobalE2node-en-gNB-ID.c	\
+	GlobalE2node-eNB-ID.c	\
+	GlobalE2node-gNB-ID.c	\
+	GlobalE2node-ng-eNB-ID.c	\
+	E2AP-IEs_GlobalENB-ID.c	\
+	E2AP-IEs_GlobalenGNB-ID.c	\
+	GlobalgNB-ID.c	\
+	GlobalngeNB-ID.c	\
+	GlobalNG-RANNode-ID.c	\
+	GlobalRIC-ID.c	\
+	E2AP-IEs_GNB-CU-UP-ID.c	\
+	E2AP-IEs_GNB-DU-ID.c	\
+	GNB-ID-Choice.c	\
+	MMEname.c	\
+	E2AP-IEs_NGENB-DU-ID.c	\
+	PLMN-Identity.c	\
+	RANfunctionDefinition.c	\
+	RANfunctionID.c	\
+	RANfunctionOID.c	\
+	RANfunctionRevision.c	\
+	RICactionDefinition.c	\
+	RICactionExecutionOrder.c	\
+	RICactionID.c	\
+	RICactionType.c	\
+	RICcallProcessID.c	\
+	RICcontrolAckRequest.c	\
+	RICcontrolHeader.c	\
+	RICcontrolMessage.c	\
+	RICcontrolOutcome.c	\
+	RICeventTriggerDefinition.c	\
+	RICindicationHeader.c	\
+	RICindicationMessage.c	\
+	RICindicationSN.c	\
+	RICindicationType.c	\
+	RICrequestID.c	\
+	RICsubscriptionTime.c	\
+	RICsubsequentAction.c	\
+	RICsubsequentActionType.c	\
+	RICqueryHeader.c	\
+	RICqueryDefinition.c	\
+	RICqueryOutcome.c	\
+	RICtimeToWait.c	\
+	TimeToWait.c	\
+	TNLinformation.c	\
+	TNLusage.c	\
+	TransactionID.c	\
+	TypeOfError.c	\
+	RICsubscriptionRequest.c	\
+	RICsubscriptionDetails.c	\
+	RICactions-ToBeSetup-List.c	\
+	RICaction-ToBeSetup-Item.c	\
+	RICsubscriptionResponse.c	\
+	RICaction-Admitted-List.c	\
+	RICaction-Admitted-Item.c	\
+	RICaction-NotAdmitted-List.c	\
+	RICaction-NotAdmitted-Item.c	\
+	RICsubscriptionFailure.c	\
+	RICsubscriptionDeleteRequest.c	\
+	RICsubscriptionDeleteResponse.c	\
+	RICsubscriptionDeleteFailure.c	\
+	RICsubscriptionDeleteRequired.c	\
+	RICsubscription-List-withCause.c	\
+	RICsubscription-withCause-Item.c	\
+	RICsubscriptionModificationRequest.c	\
+	RICactions-ToBeRemovedForModification-List.c	\
+	RICaction-ToBeRemovedForModification-Item.c	\
+	RICactions-ToBeModifiedForModification-List.c	\
+	RICaction-ToBeModifiedForModification-Item.c	\
+	RICactions-ToBeAddedForModification-List.c	\
+	RICaction-ToBeAddedForModification-Item.c	\
+	RICsubscriptionModificationResponse.c	\
+	RICactions-RemovedForModification-List.c	\
+	RICaction-RemovedForModification-Item.c	\
+	RICactions-FailedToBeRemovedForModification-List.c	\
+	RICaction-FailedToBeRemovedForModification-Item.c	\
+	RICactions-ModifiedForModification-List.c	\
+	RICaction-ModifiedForModification-Item.c	\
+	RICactions-FailedToBeModifiedForModification-List.c	\
+	RICaction-FailedToBeModifiedForModification-Item.c	\
+	RICactions-AddedForModification-List.c	\
+	RICaction-AddedForModification-Item.c	\
+	RICactions-FailedToBeAddedForModification-List.c	\
+	RICaction-FailedToBeAddedForModification-Item.c	\
+	RICsubscriptionModificationFailure.c	\
+	RICsubscriptionModificationRequired.c	\
+	RICactions-RequiredToBeModified-List.c	\
+	RICaction-RequiredToBeModified-Item.c	\
+	RICactions-RequiredToBeRemoved-List.c	\
+	RICaction-RequiredToBeRemoved-Item.c	\
+	RICsubscriptionModificationConfirm.c	\
+	RICactions-ConfirmedForModification-List.c	\
+	RICaction-ConfirmedForModification-Item.c	\
+	RICactions-RefusedToBeModified-List.c	\
+	RICaction-RefusedToBeModified-Item.c	\
+	RICactions-ConfirmedForRemoval-List.c	\
+	RICaction-ConfirmedForRemoval-Item.c	\
+	RICactions-RefusedToBeRemoved-List.c	\
+	RICaction-RefusedToBeRemoved-Item.c	\
+	RICsubscriptionModificationRefuse.c	\
+	RICindication.c	\
+	RICcontrolRequest.c	\
+	RICcontrolAcknowledge.c	\
+	RICcontrolFailure.c	\
+	RICQueryRequest.c	\
+	RICQueryResponse.c	\
+	RICQueryFailure.c	\
+	ErrorIndication.c	\
+	E2setupRequest.c	\
+	E2setupResponse.c	\
+	E2setupFailure.c	\
+	E2connectionUpdate.c	\
+	E2connectionUpdate-List.c	\
+	E2connectionUpdate-Item.c	\
+	E2connectionUpdateRemove-List.c	\
+	E2connectionUpdateRemove-Item.c	\
+	E2connectionUpdateAcknowledge.c	\
+	E2connectionSetupFailed-List.c	\
+	E2connectionSetupFailed-Item.c	\
+	E2connectionUpdateFailure.c	\
+	E2nodeConfigurationUpdate.c	\
+	E2nodeComponentConfigAddition-List.c	\
+	E2nodeComponentConfigAddition-Item.c	\
+	E2nodeComponentConfigUpdate-List.c	\
+	E2nodeComponentConfigUpdate-Item.c	\
+	E2nodeComponentConfigRemoval-List.c	\
+	E2nodeComponentConfigRemoval-Item.c	\
+	E2nodeTNLassociationRemoval-List.c	\
+	E2nodeTNLassociationRemoval-Item.c	\
+	E2nodeConfigurationUpdateAcknowledge.c	\
+	E2nodeComponentConfigAdditionAck-List.c	\
+	E2nodeComponentConfigAdditionAck-Item.c	\
+	E2nodeComponentConfigUpdateAck-List.c	\
+	E2nodeComponentConfigUpdateAck-Item.c	\
+	E2nodeComponentConfigRemovalAck-List.c	\
+	E2nodeComponentConfigRemovalAck-Item.c	\
+	E2nodeConfigurationUpdateFailure.c	\
+	ResetRequest.c	\
+	ResetResponse.c	\
+	RICserviceUpdate.c	\
+	RANfunctions-List.c	\
+	RANfunction-Item.c	\
+	RANfunctionsID-List.c	\
+	RANfunctionID-Item.c	\
+	RICserviceUpdateAcknowledge.c	\
+	RANfunctionsIDcause-List.c	\
+	RANfunctionIDcause-Item.c	\
+	RICserviceUpdateFailure.c	\
+	RICserviceQuery.c	\
+	E2RemovalRequest.c	\
+	E2RemovalResponse.c	\
+	E2RemovalFailure.c	\
+	TimeStamp.c	\
+	BinIndex.c	\
+	BinRangeValue.c	\
+	GranularityPeriod.c	\
+	LogicalOR.c	\
+	MeasurementType.c	\
+	MeasurementTypeName.c	\
+	MeasurementTypeID.c	\
+	MeasurementLabel.c	\
+	TestCondInfo.c	\
+	TestCond-Type.c	\
+	TestCond-Expression.c	\
+	TestCond-Value.c	\
+	BinRangeDefinition.c	\
+	BinRangeList.c	\
+	BinRangeItem.c	\
+	DistMeasurementBinRangeList.c	\
+	DistMeasurementBinRangeItem.c	\
+	MeasurementInfoList.c	\
+	MeasurementInfoItem.c	\
+	LabelInfoList.c	\
+	LabelInfoItem.c	\
+	MeasurementData.c	\
+	MeasurementDataItem.c	\
+	MeasurementRecord.c	\
+	MeasurementRecordItem.c	\
+	MeasurementInfo-Action-List.c	\
+	MeasurementInfo-Action-Item.c	\
+	MeasurementCondList.c	\
+	MeasurementCondItem.c	\
+	MeasurementCondUEidList.c	\
+	MeasurementCondUEidItem.c	\
+	MatchingCondList.c	\
+	MatchingCondItem.c	\
+	MatchingCondItem-Choice.c	\
+	MatchingUEidList.c	\
+	MatchingUEidItem.c	\
+	MatchingUEidPerGP.c	\
+	MatchingUEidPerGP-Item.c	\
+	MatchingUEidList-PerGP.c	\
+	MatchingUEidItem-PerGP.c	\
+	MatchingUeCondPerSubList.c	\
+	MatchingUeCondPerSubItem.c	\
+	MatchingUEidPerSubList.c	\
+	MatchingUEidPerSubItem.c	\
+	UEMeasurementReportList.c	\
+	UEMeasurementReportItem.c	\
+	E2SM-KPM-EventTriggerDefinition.c	\
+	E2SM-KPM-EventTriggerDefinition-Format1.c	\
+	E2SM-KPM-ActionDefinition.c	\
+	E2SM-KPM-ActionDefinition-Format1.c	\
+	E2SM-KPM-ActionDefinition-Format2.c	\
+	E2SM-KPM-ActionDefinition-Format3.c	\
+	E2SM-KPM-ActionDefinition-Format4.c	\
+	E2SM-KPM-ActionDefinition-Format5.c	\
+	E2SM-KPM-IndicationHeader.c	\
+	E2SM-KPM-IndicationHeader-Format1.c	\
+	E2SM-KPM-IndicationMessage.c	\
+	E2SM-KPM-IndicationMessage-Format1.c	\
+	E2SM-KPM-IndicationMessage-Format2.c	\
+	E2SM-KPM-IndicationMessage-Format3.c	\
+	E2SM-KPM-RANfunction-Description.c	\
+	RIC-EventTriggerStyle-Item.c	\
+	RIC-ReportStyle-Item.c	\
+	CGI.c	\
+	CoreCPID.c	\
+	InterfaceIdentifier.c	\
+	InterfaceID-NG.c	\
+	InterfaceID-Xn.c	\
+	InterfaceID-F1.c	\
+	InterfaceID-E1.c	\
+	InterfaceID-S1.c	\
+	InterfaceID-X2.c	\
+	InterfaceID-W1.c	\
+	Interface-MessageID.c	\
+	InterfaceType.c	\
+	GroupID.c	\
+	QoSID.c	\
+	RANfunction-Name.c	\
+	RIC-Format-Type.c	\
+	RIC-Style-Type.c	\
+	RIC-Style-Name.c	\
+	RRC-MessageID.c	\
+	RRCclass-LTE.c	\
+	RRCclass-NR.c	\
+	ServingCell-ARFCN.c	\
+	ServingCell-PCI.c	\
+	UEID.c	\
+	UEID-GNB.c	\
+	UEID-GNB-CU-CP-E1AP-ID-List.c	\
+	UEID-GNB-CU-CP-E1AP-ID-Item.c	\
+	UEID-GNB-CU-F1AP-ID-List.c	\
+	UEID-GNB-CU-CP-F1AP-ID-Item.c	\
+	UEID-GNB-DU.c	\
+	UEID-GNB-CU-UP.c	\
+	UEID-NG-ENB.c	\
+	UEID-NG-ENB-DU.c	\
+	UEID-EN-GNB.c	\
+	UEID-ENB.c	\
+	E2SM-COMMON-IEs_ENB-ID.c	\
+	E2SM-COMMON-IEs_GlobalENB-ID.c	\
+	GUMMEI.c	\
+	MME-Group-ID.c	\
+	MME-Code.c	\
+	MME-UE-S1AP-ID.c	\
+	QCI.c	\
+	SubscriberProfileIDforRFP.c	\
+	EN-GNB-ID.c	\
+	ENB-UE-X2AP-ID.c	\
+	ENB-UE-X2AP-ID-Extension.c	\
+	E-UTRA-ARFCN.c	\
+	E-UTRA-PCI.c	\
+	E-UTRA-TAC.c	\
+	E2SM-COMMON-IEs_GlobalenGNB-ID.c	\
+	NGENB-CU-UE-W1AP-ID.c	\
+	E2SM-COMMON-IEs_NGENB-DU-ID.c	\
+	AMFPointer.c	\
+	AMFRegionID.c	\
+	AMFSetID.c	\
+	AMF-UE-NGAP-ID.c	\
+	EUTRACellIdentity.c	\
+	EUTRA-CGI.c	\
+	FiveQI.c	\
+	GlobalGNB-ID.c	\
+	GlobalNgENB-ID.c	\
+	GNB-ID.c	\
+	GUAMI.c	\
+	IndexToRFSP.c	\
+	NgENB-ID.c	\
+	NRCellIdentity.c	\
+	NR-CGI.c	\
+	PLMNIdentity.c	\
+	QosFlowIdentifier.c	\
+	SD.c	\
+	S-NSSAI.c	\
+	SST.c	\
+	NG-RANnodeUEXnAPID.c	\
+	GlobalNGRANNodeID.c	\
+	GNB-CU-CP-UE-E1AP-ID.c	\
+	E2SM-COMMON-IEs_GNB-CU-UP-ID.c	\
+	FiveGS-TAC.c	\
+	FreqBandNrItem.c	\
+	GNB-CU-UE-F1AP-ID.c	\
+	E2SM-COMMON-IEs_GNB-DU-ID.c	\
+	NR-PCI.c	\
+	NR-ARFCN.c	\
+	NRFrequencyBand-List.c	\
+	NRFrequencyBandItem.c	\
+	NRFrequencyInfo.c	\
+	NRFrequencyShift7p5khz.c	\
+	RANUEID.c	\
+	SupportedSULBandList.c	\
+	SupportedSULFreqBandItem.c	\
+	EXTERNAL.c
+
+ASN_MODULE_HDRS=	\
+	Criticality.h	\
+	Presence.h	\
+	ProcedureCode.h	\
+	ProtocolIE-ID.h	\
+	TriggeringMessage.h	\
+	ProtocolIE-Container.h	\
+	ProtocolIE-SingleContainer.h	\
+	ProtocolIE-Field.h	\
+	ProtocolIE-ContainerPair.h	\
+	ProtocolIE-FieldPair.h	\
+	ProtocolIE-ContainerList.h	\
+	ProtocolIE-ContainerPairList.h	\
+	E2AP-PDU.h	\
+	InitiatingMessage.h	\
+	SuccessfulOutcome.h	\
+	UnsuccessfulOutcome.h	\
+	AMFName.h	\
+	Cause.h	\
+	CauseE2node.h	\
+	CauseMisc.h	\
+	CauseProtocol.h	\
+	CauseRICrequest.h	\
+	CauseRICservice.h	\
+	CauseTransport.h	\
+	CriticalityDiagnostics.h	\
+	CriticalityDiagnostics-IE-List.h	\
+	CriticalityDiagnostics-IE-Item.h	\
+	E2nodeComponentConfiguration.h	\
+	E2nodeComponentConfigurationAck.h	\
+	E2nodeComponentInterfaceType.h	\
+	E2nodeComponentID.h	\
+	E2nodeComponentInterfaceE1.h	\
+	E2nodeComponentInterfaceF1.h	\
+	E2nodeComponentInterfaceNG.h	\
+	E2nodeComponentInterfaceS1.h	\
+	E2nodeComponentInterfaceX2.h	\
+	E2nodeComponentInterfaceXn.h	\
+	E2nodeComponentInterfaceW1.h	\
+	E2AP-IEs_ENB-ID.h	\
+	ENB-ID-Choice.h	\
+	ENGNB-ID.h	\
+	GlobalE2node-ID.h	\
+	GlobalE2node-en-gNB-ID.h	\
+	GlobalE2node-eNB-ID.h	\
+	GlobalE2node-gNB-ID.h	\
+	GlobalE2node-ng-eNB-ID.h	\
+	E2AP-IEs_GlobalENB-ID.h	\
+	E2AP-IEs_GlobalenGNB-ID.h	\
+	GlobalgNB-ID.h	\
+	GlobalngeNB-ID.h	\
+	GlobalNG-RANNode-ID.h	\
+	GlobalRIC-ID.h	\
+	E2AP-IEs_GNB-CU-UP-ID.h	\
+	E2AP-IEs_GNB-DU-ID.h	\
+	GNB-ID-Choice.h	\
+	MMEname.h	\
+	E2AP-IEs_NGENB-DU-ID.h	\
+	PLMN-Identity.h	\
+	RANfunctionDefinition.h	\
+	RANfunctionID.h	\
+	RANfunctionOID.h	\
+	RANfunctionRevision.h	\
+	RICactionDefinition.h	\
+	RICactionExecutionOrder.h	\
+	RICactionID.h	\
+	RICactionType.h	\
+	RICcallProcessID.h	\
+	RICcontrolAckRequest.h	\
+	RICcontrolHeader.h	\
+	RICcontrolMessage.h	\
+	RICcontrolOutcome.h	\
+	RICeventTriggerDefinition.h	\
+	RICindicationHeader.h	\
+	RICindicationMessage.h	\
+	RICindicationSN.h	\
+	RICindicationType.h	\
+	RICrequestID.h	\
+	RICsubscriptionTime.h	\
+	RICsubsequentAction.h	\
+	RICsubsequentActionType.h	\
+	RICqueryHeader.h	\
+	RICqueryDefinition.h	\
+	RICqueryOutcome.h	\
+	RICtimeToWait.h	\
+	TimeToWait.h	\
+	TNLinformation.h	\
+	TNLusage.h	\
+	TransactionID.h	\
+	TypeOfError.h	\
+	RICsubscriptionRequest.h	\
+	RICsubscriptionDetails.h	\
+	RICactions-ToBeSetup-List.h	\
+	RICaction-ToBeSetup-Item.h	\
+	RICsubscriptionResponse.h	\
+	RICaction-Admitted-List.h	\
+	RICaction-Admitted-Item.h	\
+	RICaction-NotAdmitted-List.h	\
+	RICaction-NotAdmitted-Item.h	\
+	RICsubscriptionFailure.h	\
+	RICsubscriptionDeleteRequest.h	\
+	RICsubscriptionDeleteResponse.h	\
+	RICsubscriptionDeleteFailure.h	\
+	RICsubscriptionDeleteRequired.h	\
+	RICsubscription-List-withCause.h	\
+	RICsubscription-withCause-Item.h	\
+	RICsubscriptionModificationRequest.h	\
+	RICactions-ToBeRemovedForModification-List.h	\
+	RICaction-ToBeRemovedForModification-Item.h	\
+	RICactions-ToBeModifiedForModification-List.h	\
+	RICaction-ToBeModifiedForModification-Item.h	\
+	RICactions-ToBeAddedForModification-List.h	\
+	RICaction-ToBeAddedForModification-Item.h	\
+	RICsubscriptionModificationResponse.h	\
+	RICactions-RemovedForModification-List.h	\
+	RICaction-RemovedForModification-Item.h	\
+	RICactions-FailedToBeRemovedForModification-List.h	\
+	RICaction-FailedToBeRemovedForModification-Item.h	\
+	RICactions-ModifiedForModification-List.h	\
+	RICaction-ModifiedForModification-Item.h	\
+	RICactions-FailedToBeModifiedForModification-List.h	\
+	RICaction-FailedToBeModifiedForModification-Item.h	\
+	RICactions-AddedForModification-List.h	\
+	RICaction-AddedForModification-Item.h	\
+	RICactions-FailedToBeAddedForModification-List.h	\
+	RICaction-FailedToBeAddedForModification-Item.h	\
+	RICsubscriptionModificationFailure.h	\
+	RICsubscriptionModificationRequired.h	\
+	RICactions-RequiredToBeModified-List.h	\
+	RICaction-RequiredToBeModified-Item.h	\
+	RICactions-RequiredToBeRemoved-List.h	\
+	RICaction-RequiredToBeRemoved-Item.h	\
+	RICsubscriptionModificationConfirm.h	\
+	RICactions-ConfirmedForModification-List.h	\
+	RICaction-ConfirmedForModification-Item.h	\
+	RICactions-RefusedToBeModified-List.h	\
+	RICaction-RefusedToBeModified-Item.h	\
+	RICactions-ConfirmedForRemoval-List.h	\
+	RICaction-ConfirmedForRemoval-Item.h	\
+	RICactions-RefusedToBeRemoved-List.h	\
+	RICaction-RefusedToBeRemoved-Item.h	\
+	RICsubscriptionModificationRefuse.h	\
+	RICindication.h	\
+	RICcontrolRequest.h	\
+	RICcontrolAcknowledge.h	\
+	RICcontrolFailure.h	\
+	RICQueryRequest.h	\
+	RICQueryResponse.h	\
+	RICQueryFailure.h	\
+	ErrorIndication.h	\
+	E2setupRequest.h	\
+	E2setupResponse.h	\
+	E2setupFailure.h	\
+	E2connectionUpdate.h	\
+	E2connectionUpdate-List.h	\
+	E2connectionUpdate-Item.h	\
+	E2connectionUpdateRemove-List.h	\
+	E2connectionUpdateRemove-Item.h	\
+	E2connectionUpdateAcknowledge.h	\
+	E2connectionSetupFailed-List.h	\
+	E2connectionSetupFailed-Item.h	\
+	E2connectionUpdateFailure.h	\
+	E2nodeConfigurationUpdate.h	\
+	E2nodeComponentConfigAddition-List.h	\
+	E2nodeComponentConfigAddition-Item.h	\
+	E2nodeComponentConfigUpdate-List.h	\
+	E2nodeComponentConfigUpdate-Item.h	\
+	E2nodeComponentConfigRemoval-List.h	\
+	E2nodeComponentConfigRemoval-Item.h	\
+	E2nodeTNLassociationRemoval-List.h	\
+	E2nodeTNLassociationRemoval-Item.h	\
+	E2nodeConfigurationUpdateAcknowledge.h	\
+	E2nodeComponentConfigAdditionAck-List.h	\
+	E2nodeComponentConfigAdditionAck-Item.h	\
+	E2nodeComponentConfigUpdateAck-List.h	\
+	E2nodeComponentConfigUpdateAck-Item.h	\
+	E2nodeComponentConfigRemovalAck-List.h	\
+	E2nodeComponentConfigRemovalAck-Item.h	\
+	E2nodeConfigurationUpdateFailure.h	\
+	ResetRequest.h	\
+	ResetResponse.h	\
+	RICserviceUpdate.h	\
+	RANfunctions-List.h	\
+	RANfunction-Item.h	\
+	RANfunctionsID-List.h	\
+	RANfunctionID-Item.h	\
+	RICserviceUpdateAcknowledge.h	\
+	RANfunctionsIDcause-List.h	\
+	RANfunctionIDcause-Item.h	\
+	RICserviceUpdateFailure.h	\
+	RICserviceQuery.h	\
+	E2RemovalRequest.h	\
+	E2RemovalResponse.h	\
+	E2RemovalFailure.h	\
+	TimeStamp.h	\
+	BinIndex.h	\
+	BinRangeValue.h	\
+	GranularityPeriod.h	\
+	LogicalOR.h	\
+	MeasurementType.h	\
+	MeasurementTypeName.h	\
+	MeasurementTypeID.h	\
+	MeasurementLabel.h	\
+	TestCondInfo.h	\
+	TestCond-Type.h	\
+	TestCond-Expression.h	\
+	TestCond-Value.h	\
+	BinRangeDefinition.h	\
+	BinRangeList.h	\
+	BinRangeItem.h	\
+	DistMeasurementBinRangeList.h	\
+	DistMeasurementBinRangeItem.h	\
+	MeasurementInfoList.h	\
+	MeasurementInfoItem.h	\
+	LabelInfoList.h	\
+	LabelInfoItem.h	\
+	MeasurementData.h	\
+	MeasurementDataItem.h	\
+	MeasurementRecord.h	\
+	MeasurementRecordItem.h	\
+	MeasurementInfo-Action-List.h	\
+	MeasurementInfo-Action-Item.h	\
+	MeasurementCondList.h	\
+	MeasurementCondItem.h	\
+	MeasurementCondUEidList.h	\
+	MeasurementCondUEidItem.h	\
+	MatchingCondList.h	\
+	MatchingCondItem.h	\
+	MatchingCondItem-Choice.h	\
+	MatchingUEidList.h	\
+	MatchingUEidItem.h	\
+	MatchingUEidPerGP.h	\
+	MatchingUEidPerGP-Item.h	\
+	MatchingUEidList-PerGP.h	\
+	MatchingUEidItem-PerGP.h	\
+	MatchingUeCondPerSubList.h	\
+	MatchingUeCondPerSubItem.h	\
+	MatchingUEidPerSubList.h	\
+	MatchingUEidPerSubItem.h	\
+	UEMeasurementReportList.h	\
+	UEMeasurementReportItem.h	\
+	E2SM-KPM-EventTriggerDefinition.h	\
+	E2SM-KPM-EventTriggerDefinition-Format1.h	\
+	E2SM-KPM-ActionDefinition.h	\
+	E2SM-KPM-ActionDefinition-Format1.h	\
+	E2SM-KPM-ActionDefinition-Format2.h	\
+	E2SM-KPM-ActionDefinition-Format3.h	\
+	E2SM-KPM-ActionDefinition-Format4.h	\
+	E2SM-KPM-ActionDefinition-Format5.h	\
+	E2SM-KPM-IndicationHeader.h	\
+	E2SM-KPM-IndicationHeader-Format1.h	\
+	E2SM-KPM-IndicationMessage.h	\
+	E2SM-KPM-IndicationMessage-Format1.h	\
+	E2SM-KPM-IndicationMessage-Format2.h	\
+	E2SM-KPM-IndicationMessage-Format3.h	\
+	E2SM-KPM-RANfunction-Description.h	\
+	RIC-EventTriggerStyle-Item.h	\
+	RIC-ReportStyle-Item.h	\
+	CGI.h	\
+	CoreCPID.h	\
+	InterfaceIdentifier.h	\
+	InterfaceID-NG.h	\
+	InterfaceID-Xn.h	\
+	InterfaceID-F1.h	\
+	InterfaceID-E1.h	\
+	InterfaceID-S1.h	\
+	InterfaceID-X2.h	\
+	InterfaceID-W1.h	\
+	Interface-MessageID.h	\
+	InterfaceType.h	\
+	GroupID.h	\
+	QoSID.h	\
+	RANfunction-Name.h	\
+	RIC-Format-Type.h	\
+	RIC-Style-Type.h	\
+	RIC-Style-Name.h	\
+	RRC-MessageID.h	\
+	RRCclass-LTE.h	\
+	RRCclass-NR.h	\
+	ServingCell-ARFCN.h	\
+	ServingCell-PCI.h	\
+	UEID.h	\
+	UEID-GNB.h	\
+	UEID-GNB-CU-CP-E1AP-ID-List.h	\
+	UEID-GNB-CU-CP-E1AP-ID-Item.h	\
+	UEID-GNB-CU-F1AP-ID-List.h	\
+	UEID-GNB-CU-CP-F1AP-ID-Item.h	\
+	UEID-GNB-DU.h	\
+	UEID-GNB-CU-UP.h	\
+	UEID-NG-ENB.h	\
+	UEID-NG-ENB-DU.h	\
+	UEID-EN-GNB.h	\
+	UEID-ENB.h	\
+	E2SM-COMMON-IEs_ENB-ID.h	\
+	E2SM-COMMON-IEs_GlobalENB-ID.h	\
+	GUMMEI.h	\
+	MME-Group-ID.h	\
+	MME-Code.h	\
+	MME-UE-S1AP-ID.h	\
+	QCI.h	\
+	SubscriberProfileIDforRFP.h	\
+	EN-GNB-ID.h	\
+	ENB-UE-X2AP-ID.h	\
+	ENB-UE-X2AP-ID-Extension.h	\
+	E-UTRA-ARFCN.h	\
+	E-UTRA-PCI.h	\
+	E-UTRA-TAC.h	\
+	E2SM-COMMON-IEs_GlobalenGNB-ID.h	\
+	NGENB-CU-UE-W1AP-ID.h	\
+	E2SM-COMMON-IEs_NGENB-DU-ID.h	\
+	AMFPointer.h	\
+	AMFRegionID.h	\
+	AMFSetID.h	\
+	AMF-UE-NGAP-ID.h	\
+	EUTRACellIdentity.h	\
+	EUTRA-CGI.h	\
+	FiveQI.h	\
+	GlobalGNB-ID.h	\
+	GlobalNgENB-ID.h	\
+	GNB-ID.h	\
+	GUAMI.h	\
+	IndexToRFSP.h	\
+	NgENB-ID.h	\
+	NRCellIdentity.h	\
+	NR-CGI.h	\
+	PLMNIdentity.h	\
+	QosFlowIdentifier.h	\
+	SD.h	\
+	S-NSSAI.h	\
+	SST.h	\
+	NG-RANnodeUEXnAPID.h	\
+	GlobalNGRANNodeID.h	\
+	GNB-CU-CP-UE-E1AP-ID.h	\
+	E2SM-COMMON-IEs_GNB-CU-UP-ID.h	\
+	FiveGS-TAC.h	\
+	FreqBandNrItem.h	\
+	GNB-CU-UE-F1AP-ID.h	\
+	E2SM-COMMON-IEs_GNB-DU-ID.h	\
+	NR-PCI.h	\
+	NR-ARFCN.h	\
+	NRFrequencyBand-List.h	\
+	NRFrequencyBandItem.h	\
+	NRFrequencyInfo.h	\
+	NRFrequencyShift7p5khz.h	\
+	RANUEID.h	\
+	SupportedSULBandList.h	\
+	SupportedSULFreqBandItem.h	\
+	EXTERNAL.h
+
+ASN_MODULE_HDRS+=ANY.h
+ASN_MODULE_SRCS+=ANY.c
+ASN_MODULE_HDRS+=OCTET_STRING.h
+ASN_MODULE_HDRS+=OPEN_TYPE.h
+ASN_MODULE_SRCS+=OPEN_TYPE.c
+ASN_MODULE_HDRS+=constr_CHOICE.h
+ASN_MODULE_HDRS+=BOOLEAN.h
+ASN_MODULE_SRCS+=BOOLEAN.c
+ASN_MODULE_HDRS+=GraphicString.h
+ASN_MODULE_SRCS+=GraphicString.c
+ASN_MODULE_HDRS+=INTEGER.h
+ASN_MODULE_SRCS+=INTEGER.c
+ASN_MODULE_HDRS+=NULL.h
+ASN_MODULE_SRCS+=NULL.c
+ASN_MODULE_HDRS+=NativeEnumerated.h
+ASN_MODULE_SRCS+=NativeEnumerated.c
+ASN_MODULE_HDRS+=NativeInteger.h
+ASN_MODULE_SRCS+=NativeInteger.c
+ASN_MODULE_HDRS+=NativeReal.h
+ASN_MODULE_SRCS+=NativeReal.c
+ASN_MODULE_HDRS+=REAL.h
+ASN_MODULE_HDRS+=OBJECT_IDENTIFIER.h
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER.c
+ASN_MODULE_HDRS+=asn_codecs_prim.h
+ASN_MODULE_HDRS+=ObjectDescriptor.h
+ASN_MODULE_SRCS+=ObjectDescriptor.c
+ASN_MODULE_HDRS+=PrintableString.h
+ASN_MODULE_SRCS+=PrintableString.c
+ASN_MODULE_SRCS+=REAL.c
+ASN_MODULE_HDRS+=asn_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=asn_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=asn_SET_OF.h
+ASN_MODULE_SRCS+=asn_SET_OF.c
+ASN_MODULE_SRCS+=constr_CHOICE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE.h
+ASN_MODULE_SRCS+=constr_SEQUENCE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=constr_SET_OF.h
+ASN_MODULE_SRCS+=constr_SET_OF.c
+ASN_MODULE_HDRS+=asn_application.h
+ASN_MODULE_SRCS+=asn_application.c
+ASN_MODULE_HDRS+=asn_ioc.h
+ASN_MODULE_HDRS+=asn_system.h
+ASN_MODULE_HDRS+=asn_codecs.h
+ASN_MODULE_HDRS+=asn_internal.h
+ASN_MODULE_SRCS+=asn_internal.c
+ASN_MODULE_HDRS+=asn_bit_data.h
+ASN_MODULE_SRCS+=asn_bit_data.c
+ASN_MODULE_SRCS+=OCTET_STRING.c
+ASN_MODULE_HDRS+=BIT_STRING.h
+ASN_MODULE_SRCS+=BIT_STRING.c
+ASN_MODULE_SRCS+=asn_codecs_prim.c
+ASN_MODULE_HDRS+=ber_tlv_length.h
+ASN_MODULE_SRCS+=ber_tlv_length.c
+ASN_MODULE_HDRS+=ber_tlv_tag.h
+ASN_MODULE_SRCS+=ber_tlv_tag.c
+ASN_MODULE_HDRS+=constr_TYPE.h
+ASN_MODULE_SRCS+=constr_TYPE.c
+ASN_MODULE_HDRS+=constraints.h
+ASN_MODULE_SRCS+=constraints.c
+ASN_MODULE_HDRS+=ber_decoder.h
+ASN_MODULE_HDRS+=der_encoder.h
+ASN_MODULE_SRCS+=ber_decoder.c
+ASN_MODULE_SRCS+=der_encoder.c
+ASN_MODULE_SRCS+=ANY_ber.c
+ASN_MODULE_SRCS+=BOOLEAN_ber.c
+ASN_MODULE_SRCS+=INTEGER_ber.c
+ASN_MODULE_SRCS+=NULL_ber.c
+ASN_MODULE_SRCS+=NativeInteger_ber.c
+ASN_MODULE_SRCS+=NativeReal_ber.c
+ASN_MODULE_SRCS+=OCTET_STRING_ber.c
+ASN_MODULE_SRCS+=OPEN_TYPE_ber.c
+ASN_MODULE_SRCS+=asn_codecs_prim_ber.c
+ASN_MODULE_SRCS+=constr_CHOICE_ber.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_ber.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_ber.c
+ASN_MODULE_SRCS+=constr_SET_OF_ber.c
+ASN_MODULE_HDRS+=xer_support.h
+ASN_MODULE_HDRS+=xer_decoder.h
+ASN_MODULE_HDRS+=xer_encoder.h
+ASN_MODULE_SRCS+=xer_support.c
+ASN_MODULE_SRCS+=xer_decoder.c
+ASN_MODULE_SRCS+=xer_encoder.c
+ASN_MODULE_SRCS+=ANY_xer.c
+ASN_MODULE_SRCS+=BIT_STRING_xer.c
+ASN_MODULE_SRCS+=BOOLEAN_xer.c
+ASN_MODULE_SRCS+=INTEGER_xer.c
+ASN_MODULE_SRCS+=NULL_xer.c
+ASN_MODULE_SRCS+=NativeEnumerated_xer.c
+ASN_MODULE_SRCS+=NativeInteger_xer.c
+ASN_MODULE_SRCS+=NativeReal_xer.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_xer.c
+ASN_MODULE_SRCS+=OCTET_STRING_xer.c
+ASN_MODULE_SRCS+=OPEN_TYPE_xer.c
+ASN_MODULE_SRCS+=REAL_xer.c
+ASN_MODULE_SRCS+=asn_codecs_prim_xer.c
+ASN_MODULE_SRCS+=constr_CHOICE_xer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_xer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_xer.c
+ASN_MODULE_SRCS+=constr_SET_OF_xer.c
+ASN_MODULE_HDRS+=per_decoder.h
+ASN_MODULE_HDRS+=per_encoder.h
+ASN_MODULE_HDRS+=per_support.h
+ASN_MODULE_HDRS+=per_opentype.h
+ASN_MODULE_SRCS+=per_decoder.c
+ASN_MODULE_SRCS+=per_encoder.c
+ASN_MODULE_SRCS+=per_support.c
+ASN_MODULE_SRCS+=per_opentype.c
+ASN_MODULE_HDRS+=uper_decoder.h
+ASN_MODULE_HDRS+=uper_encoder.h
+ASN_MODULE_HDRS+=uper_support.h
+ASN_MODULE_HDRS+=uper_opentype.h
+ASN_MODULE_SRCS+=uper_decoder.c
+ASN_MODULE_SRCS+=uper_encoder.c
+ASN_MODULE_SRCS+=uper_support.c
+ASN_MODULE_SRCS+=uper_opentype.c
+ASN_MODULE_SRCS+=ANY_uper.c
+ASN_MODULE_SRCS+=BIT_STRING_uper.c
+ASN_MODULE_SRCS+=BOOLEAN_uper.c
+ASN_MODULE_SRCS+=INTEGER_uper.c
+ASN_MODULE_SRCS+=NULL_uper.c
+ASN_MODULE_SRCS+=NativeEnumerated_uper.c
+ASN_MODULE_SRCS+=NativeInteger_uper.c
+ASN_MODULE_SRCS+=NativeReal_uper.c
+ASN_MODULE_SRCS+=OCTET_STRING_uper.c
+ASN_MODULE_SRCS+=OPEN_TYPE_uper.c
+ASN_MODULE_SRCS+=REAL_uper.c
+ASN_MODULE_SRCS+=constr_CHOICE_uper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_uper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_uper.c
+ASN_MODULE_SRCS+=constr_SET_OF_uper.c
+ASN_MODULE_HDRS+=aper_decoder.h
+ASN_MODULE_HDRS+=aper_encoder.h
+ASN_MODULE_HDRS+=aper_support.h
+ASN_MODULE_HDRS+=aper_opentype.h
+ASN_MODULE_SRCS+=aper_decoder.c
+ASN_MODULE_SRCS+=aper_encoder.c
+ASN_MODULE_SRCS+=aper_support.c
+ASN_MODULE_SRCS+=aper_opentype.c
+ASN_MODULE_SRCS+=ANY_aper.c
+ASN_MODULE_SRCS+=BOOLEAN_aper.c
+ASN_MODULE_SRCS+=INTEGER_aper.c
+ASN_MODULE_SRCS+=NULL_aper.c
+ASN_MODULE_SRCS+=NativeEnumerated_aper.c
+ASN_MODULE_SRCS+=NativeInteger_aper.c
+ASN_MODULE_SRCS+=NativeReal_aper.c
+ASN_MODULE_SRCS+=OCTET_STRING_aper.c
+ASN_MODULE_SRCS+=OPEN_TYPE_aper.c
+ASN_MODULE_SRCS+=REAL_aper.c
+ASN_MODULE_SRCS+=constr_CHOICE_aper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_aper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_aper.c
+ASN_MODULE_SRCS+=constr_SET_OF_aper.c
+ASN_MODULE_SRCS+=BIT_STRING_print.c
+ASN_MODULE_SRCS+=BOOLEAN_print.c
+ASN_MODULE_SRCS+=INTEGER_print.c
+ASN_MODULE_SRCS+=NULL_print.c
+ASN_MODULE_SRCS+=NativeInteger_print.c
+ASN_MODULE_SRCS+=NativeReal_print.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_print.c
+ASN_MODULE_SRCS+=OCTET_STRING_print.c
+ASN_MODULE_SRCS+=REAL_print.c
+ASN_MODULE_SRCS+=constr_CHOICE_print.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_print.c
+ASN_MODULE_SRCS+=constr_SET_OF_print.c
+ASN_MODULE_HDRS+=asn_random_fill.h
+ASN_MODULE_SRCS+=asn_random_fill.c
+ASN_MODULE_SRCS+=BIT_STRING_rfill.c
+ASN_MODULE_SRCS+=BOOLEAN_rfill.c
+ASN_MODULE_SRCS+=INTEGER_rfill.c
+ASN_MODULE_SRCS+=NULL_rfill.c
+ASN_MODULE_SRCS+=NativeInteger_rfill.c
+ASN_MODULE_SRCS+=NativeReal_rfill.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_rfill.c
+ASN_MODULE_SRCS+=OCTET_STRING_rfill.c
+ASN_MODULE_SRCS+=REAL_rfill.c
+ASN_MODULE_SRCS+=constr_CHOICE_rfill.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_rfill.c
+ASN_MODULE_SRCS+=constr_SET_OF_rfill.c
+ASN_MODULE_HDRS+=jer_encoder.h
+ASN_MODULE_SRCS+=jer_encoder.c
+ASN_MODULE_SRCS+=ANY_jer.c
+ASN_MODULE_SRCS+=BIT_STRING_jer.c
+ASN_MODULE_SRCS+=BOOLEAN_jer.c
+ASN_MODULE_SRCS+=INTEGER_jer.c
+ASN_MODULE_SRCS+=NULL_jer.c
+ASN_MODULE_SRCS+=NativeEnumerated_jer.c
+ASN_MODULE_SRCS+=NativeInteger_jer.c
+ASN_MODULE_SRCS+=NativeReal_jer.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_jer.c
+ASN_MODULE_SRCS+=OCTET_STRING_jer.c
+ASN_MODULE_SRCS+=REAL_jer.c
+ASN_MODULE_SRCS+=constr_CHOICE_jer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_jer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_jer.c
+ASN_MODULE_SRCS+=constr_SET_OF_jer.c
+
+ASN_MODULE_CFLAGS=-DASN_DISABLE_OER_SUPPORT 
+
+lib_LTLIBRARIES+=libasncodec.la
+libasncodec_la_SOURCES=$(ASN_MODULE_SRCS) $(ASN_MODULE_HDRS)
+libasncodec_la_CPPFLAGS=-I$(top_srcdir)/
+libasncodec_la_CFLAGS=$(ASN_MODULE_CFLAGS)
+libasncodec_la_LDFLAGS=-lm
