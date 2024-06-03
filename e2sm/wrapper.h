@@ -40,6 +40,10 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+
 #include "asn_application.h"
 #include <E2SM-KPM-EventTriggerDefinition.h>
 #include <E2SM-KPM-EventTriggerDefinition-Format1.h>
@@ -110,6 +114,52 @@ typedef struct ranCellUeKpi{
 	int ueKpiSize;
 	int cellKpiSize;
 } ranCellUeKpi_t;
+
+#define LOG_I(format, ...) \
+    do { \
+        const char *file = __FILE__; \
+        const char *fileName = strrchr(file, '/'); \
+        if (fileName != NULL) { \
+            fileName++; \
+        } \
+        else { \
+            fileName = file; \
+        } \
+        fprintf(stderr, "[%s:%d] [INFO] ", fileName, __LINE__); \
+        fprintf(stderr, format, ##__VA_ARGS__); \
+        fprintf(stderr, "\n"); \
+    } while (0);
+
+#define LOG_D(format, ...) \
+    do { \
+        const char *file = __FILE__; \
+        const char *fileName = strrchr(file, '/'); \
+        if (fileName != NULL) { \
+            fileName++; \
+        } \
+        else { \
+            fileName = file; \
+        } \
+        fprintf(stderr, "[%s:%d] [DEBUG] ", fileName, __LINE__); \
+        fprintf(stderr, format, ##__VA_ARGS__); \
+        fprintf(stderr, "\n"); \
+    } while (0);
+
+#define LOG_E(format, ...) \
+    do { \
+        const char *file = __FILE__; \
+        const char *fileName = strrchr(file, '/'); \
+        if (fileName != NULL) { \
+            fileName++; \
+        } \
+        else { \
+            fileName = file; \
+        } \
+        fprintf(stderr, "[%s:%d] [ERROR] ", fileName, __LINE__); \
+        fprintf(stderr, format, ##__VA_ARGS__); \
+        fprintf(stderr, "\n"); \
+    } while (0);
+
 
 ssize_t e2sm_encode_ric_event_trigger_definition(void *buffer, size_t buf_size, size_t event_trigger_count, long *RT_periods);
 

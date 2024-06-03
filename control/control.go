@@ -13,8 +13,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"reflect"
 	"strconv"
+	"strings"
 	"time"
 	"unsafe"
 
@@ -41,11 +43,12 @@ var (
 	actionType           = "report"
 	actionId             = int64(1)
 	seqId                = int64(1)
-	funcId               = int64(2)
 	hPort                = int64(8080)
 	rPort                = int64(4560)
 	clientEndpoint       = clientmodel.SubscriptionParamsClientEndpoint{Host: "service-ricxapp-kpimon-go-http.ricxapp", HTTPPort: &hPort, RMRPort: &rPort}
 )
+
+var funcId, _ = strconv.ParseInt(os.Getenv("RAN_FUNC_ID"), 10, 64)
 var Glob_cell = make(map[string]bool)
 var Glob_Ran_cell = make(map[string][]string)
 var Glob_cell_Plmn = make(map[string]string)
@@ -67,9 +70,9 @@ func (c Control) Consume(msg *xapp.RMRParams) error {
 }
 
 func NewControl() Control {
-	xapp.Logger.Info("In new control\n")
+	xapp.Logger.Info("In new control")
 	create_db()
-	xapp.Logger.Info("returning control\n")
+	xapp.Logger.Info("returning control")
 	return Control{
 		make(chan *xapp.RMRParams),
 		influxdb2.NewClient("http://ricplt-influxdb.ricplt:8086", "client"),
@@ -77,12 +80,12 @@ func NewControl() Control {
 }
 func create_db() {
 	//Create a database named kpimon in influxDB
-	xapp.Logger.Info("In create_db\n")
+	xapp.Logger.Info("In create_db")
 	_, err := http.Post("http://ricplt-influxdb.ricplt:8086/query?q=create%20database%20kpimon", "", nil)
 	if err != nil {
 		xapp.Logger.Error("Create database failed!")
 	}
-	xapp.Logger.Info("exiting create_db\n")
+	xapp.Logger.Info("exiting create_db")
 }
 
 func (c Control) getEnbList() ([]*xapp.RNIBNbIdentity, error) {
@@ -92,10 +95,12 @@ func (c Control) getEnbList() ([]*xapp.RNIBNbIdentity, error) {
 		return nil, err
 	}
 
-	xapp.Logger.Info("List for connected eNBs :")
-	for index, enb := range enbs {
-		xapp.Logger.Info("%d. enbid: %s", index+1, enb.InventoryName)
+	var connected_enb_names []string
+	for _, enb := range enbs {
+		connected_enb_names = append(connected_enb_names, enb.InventoryName)
 	}
+	xapp.Logger.Info("List for connected eNBs: [%s]", strings.Join(connected_enb_names, ", "))
+
 	return enbs, nil
 }
 
@@ -106,10 +111,13 @@ func (c *Control) getGnbList() ([]*xapp.RNIBNbIdentity, error) {
 		xapp.Logger.Error("err: %s", err)
 		return nil, err
 	}
-	xapp.Logger.Info("List of connected gNBs :")
-	for index, gnb := range gnbs {
-		xapp.Logger.Info("%d. gnbid : %s", index+1, gnb.InventoryName)
+
+	var connected_gnb_names []string
+	for _, gnb := range gnbs {
+		connected_gnb_names = append(connected_gnb_names, gnb.InventoryName)
 	}
+	xapp.Logger.Info("List for connected gNBs: [%s]", strings.Join(connected_gnb_names, ", "))
+
 	return gnbs, nil
 }
 
@@ -181,7 +189,7 @@ func encode_action_format1(plmn string, cellid string, meid string) clientmodel.
 	counter := 0
 	//RanFunctionId=2 for kpm in viavi
 	for i := 0; i < len(resp.Gnb.RanFunctions); i++ {
-		if resp.Gnb.RanFunctions[i].RanFunctionId == 2 {
+		if resp.Gnb.RanFunctions[i].RanFunctionId == int(funcId) {
 			counter = i
 			break
 		}
@@ -1008,7 +1016,7 @@ func (c Control) xAppStartCB(d interface{}) {
 			counter := 0
 			//RanFunctionId=2 for kpm in viavi
 			for i := 0; i < len(resp.Gnb.RanFunctions); i++ {
-				if resp.Gnb.RanFunctions[i].RanFunctionId == 2 {
+				if int64(resp.Gnb.RanFunctions[i].RanFunctionId) == funcId {
 					counter = i
 					break
 				}
