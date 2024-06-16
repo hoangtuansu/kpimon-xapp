@@ -28,18 +28,19 @@ RUN cd f1ap && \
     cp wrapper.h headers/*.h /usr/local/include/f1ap && \
     ldconfig
 
+COPY asn1c/ asn1c/
 COPY e2ap/ e2ap/
 
 # "COMPILING E2AP Wrapper"
 RUN cd e2ap && \
-    gcc -c -fPIC -Iheaders/ lib/*.c wrapper.c && \
+    gcc -c -fPIC -I/opt/asn1c/ /opt/asn1c/*.c wrapper.c && \
     gcc *.o -shared -o libe2apwrapper.so && \
     cp libe2apwrapper.so /usr/local/lib/ && \
     mkdir /usr/local/include/e2ap && \
-    cp wrapper.h headers/*.h /usr/local/include/e2ap && \
+    cp wrapper.h /opt/asn1c/*.h /usr/local/include/e2ap && \
     ldconfig
 
-COPY asn1c/ asn1c/
+
 COPY e2sm/ e2sm/
     
 # "COMPILING E2SM Wrapper"
@@ -47,8 +48,8 @@ RUN cd e2sm && \
     gcc -c -fPIC -I/opt/asn1c/ /opt/asn1c/*.c wrapper.c && \
      gcc *.o -shared -o libe2smwrapper.so&& \
     cp libe2smwrapper.so /usr/local/lib/ && \
-    mkdir /usr/local/include/kpimon && \
-    cp wrapper.h /opt/asn1c/*.h /usr/local/include/kpimon && \
+    mkdir /usr/local/include/e2sm && \
+    cp wrapper.h /opt/asn1c/*.h /usr/local/include/e2sm && \
     ldconfig
 
 # Setup running environment

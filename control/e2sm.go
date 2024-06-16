@@ -47,6 +47,7 @@ func (c *E2sm) SetEventTriggerDefinition(buffer []byte, eventTriggerCount int, R
 	newBuffer = C.GoBytes(cptr, (C.int(size)+7)/8)
 	return
 }
+
 /*
 func (c *E2sm) SetActionDefinition(buffer []byte, ricStyleType int64) (newBuffer []byte, err error) {
 	cptr := unsafe.Pointer(&buffer[0])

@@ -17,18 +17,15 @@
 #include <PLMNIdentity.h>
 #include <E2SM-KPM-IndicationHeader.h>
 #include <E2SM-KPM-IndicationHeader-Format1.h>
-//#include <GlobalNGRANNodeID.h>
-#include<GlobalRANNodeID.h>
+#include <GlobalNGRANNodeID.h>
+//#include<GlobalRANNodeID.h>
 #include <GlobalGNB-ID.h>
-#include <GlobalenGNB-ID.h>
+#include <GlobalE2node-en-gNB-ID.h>
 #include <GlobalNgENB-ID.h>
-#include <GlobalENB-ID.h>
+#include <GlobalE2node-eNB-ID.h>
 #include <PLMNIdentity.h>
 #include <GNB-ID.h>
-#include <GNB-CU-UP-ID.h>
-#include <GNB-DU-ID.h>
 #include <EN-GNB-ID.h>
-#include <ENB-ID.h>
 #include <NR-CGI.h>
 #include <S-NSSAI.h>
 #include <E2SM-KPM-IndicationMessage.h>
@@ -71,15 +68,12 @@
 #include <E2SM-KPM-IndicationHeader-Format1.h>
 //#include <GlobalNGRANNodeID.h>
 #include <GlobalGNB-ID.h>
-#include <GlobalenGNB-ID.h>
+#include <GlobalE2node-en-gNB-ID.h>
 #include <GlobalNgENB-ID.h>
-#include <GlobalENB-ID.h>
+#include <GlobalE2node-eNB-ID.h>
 #include <PLMNIdentity.h>
 #include <GNB-ID.h>
-#include <GNB-CU-UP-ID.h>
-#include <GNB-DU-ID.h>
 #include <EN-GNB-ID.h>
-#include <ENB-ID.h>
 #include <NR-CGI.h>
 #include <S-NSSAI.h>
 #include <E2SM-KPM-IndicationMessage.h>

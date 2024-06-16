@@ -569,8 +569,8 @@ size_t e2sm_encode_ric_action_definition_format3_by_name(unsigned char *buf, siz
                 MeasurementLabel_t *M_Label=(MeasurementLabel_t *)calloc(1,sizeof(MeasurementLabel_t));
                 M_Label->noLabel=no_label;
                 M_Item[0] = (MatchingCondItem_t *)calloc(1, sizeof(MatchingCondItem_t ));
-                M_Item[0]->present=MatchingCondItem_PR_measLabel;
-                M_Item[0]->choice.measLabel=M_Label;
+                M_Item[0]->matchingCondChoice.present = MatchingCondItem_Choice_PR_measLabel;
+                M_Item[0]->matchingCondChoice.choice.measLabel=M_Label;
                 int result1 = ASN_SEQUENCE_ADD(&CondItem[index]->matchingCond, M_Item[0]);
                 if (result1==-1)
                 {
@@ -673,8 +673,8 @@ size_t e2sm_encode_ric_action_definition_format3_by_id(unsigned char *buf, size_
                 MeasurementLabel_t *M_Label=(MeasurementLabel_t *)calloc(1,sizeof(MeasurementLabel_t));
                 M_Label->noLabel=no_label;
                 M_Item[0] = (MatchingCondItem_t *)calloc(1, sizeof(MatchingCondItem_t ));
-                M_Item[0]->present=MatchingCondItem_PR_measLabel;
-                M_Item[0]->choice.measLabel=M_Label;
+                M_Item[0]->matchingCondChoice.present = MatchingCondItem_Choice_PR_measLabel;
+                M_Item[0]->matchingCondChoice.choice.measLabel=M_Label;
                 int result1 = ASN_SEQUENCE_ADD(&CondItem[index]->matchingCond, M_Item[0]);
                 if (result1==-1)
                 {

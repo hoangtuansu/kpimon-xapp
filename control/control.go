@@ -2,8 +2,9 @@ package control
 
 /*
 #include <e2sm/wrapper.h>
-#cgo LDFLAGS: -lm  -le2smwrapper
-#cgo CFLAGS:  -I/usr/local/include/e2sm
+#include <e2ap/wrapper.h>
+#cgo LDFLAGS: -lm  -le2smwrapper -le2apwrapper
+#cgo CFLAGS:  -I/usr/local/include
 */
 import "C"
 import (
