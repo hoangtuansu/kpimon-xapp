@@ -84,7 +84,7 @@ func create_db() {
 	xapp.Logger.Info("In create_db")
 	_, err := http.Post("http://ricplt-influxdb.ricplt:8086/query?q=create%20database%20kpimon", "", nil)
 	if err != nil {
-		xapp.Logger.Error("Create database failed!")
+		xapp.Logger.Error("Create database failed! Error: %s", err)
 	}
 	xapp.Logger.Info("exiting create_db")
 }
