@@ -148,8 +148,6 @@ struct encode_act_Def_result encode_action_Definition(const char *hex_values, in
 
         asn_dec_rval_t rval =  asn_decode(NULL, syntax, &asn_DEF_E2SM_KPM_RANfunction_Description, (void**)&e2smKpmRanFunctDescrip, hex_buffer, hex_len);
 
-        asn_fprint(stderr, &asn_DEF_E2SM_KPM_RANfunction_Description, e2smKpmRanFunctDescrip);
-
         if(rval.code == RC_OK) {
                 LOG_I( "E2SM KPM RAN Function Description decode successfully");
 
@@ -181,8 +179,9 @@ struct encode_act_Def_result encode_action_Definition(const char *hex_values, in
                         }
                 }
         } else {
-                 LOG_E("E2SM KPM RAN Function Description decode failed rval.code = %dn", rval.code);
-                 exit(1);
+                asn_fprint(stderr, &asn_DEF_E2SM_KPM_RANfunction_Description, e2smKpmRanFunctDescrip);
+                LOG_E("E2SM KPM RAN Function Description decode failed rval.code = %dn", rval.code);
+                exit(1);
         }
         
         unsigned char bufFormat3[BUFFER_SIZE];

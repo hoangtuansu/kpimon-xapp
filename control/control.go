@@ -1120,9 +1120,8 @@ func (c Control) xAppStartCB(d interface{}) {
 	// Send subscription request to connected NodeB
 	for _, nb := range nbList {
 		if nb.ConnectionStatus == 1 {
-			xapp.Logger.Info("Before send subscription request to %v", nb.InventoryName)
 			c.sendSubscription(nb.InventoryName)
-			xapp.Logger.Info("After send subscription request to %v", nb.InventoryName)
+			xapp.Logger.Info("Subscription request has been sent to %v.", nb.InventoryName)
 		}
 
 	}

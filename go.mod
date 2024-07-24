@@ -3,7 +3,7 @@ module example.com/kpimon
 go 1.18
 
 require (
-	gerrit.o-ran-sc.org/r/ric-plt/xapp-frame v0.9.21
+	gerrit.o-ran-sc.org/r/ric-plt/xapp-frame v0.9.22
 	github.com/influxdata/influxdb-client-go v1.4.0
 )
 
@@ -13,12 +13,13 @@ require (
 	gerrit.o-ran-sc.org/r/ric-plt/nodeb-rnib.git/common v1.2.1 // indirect
 	gerrit.o-ran-sc.org/r/ric-plt/nodeb-rnib.git/entities v1.2.1 // indirect
 	gerrit.o-ran-sc.org/r/ric-plt/nodeb-rnib.git/reader v1.2.1 // indirect
-	gerrit.o-ran-sc.org/r/ric-plt/sdlgo v0.7.0 // indirect
+	gerrit.o-ran-sc.org/r/ric-plt/sdlgo v0.10.3 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/deepmap/oapi-codegen v1.3.6 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
@@ -33,7 +34,7 @@ require (
 	github.com/go-openapi/strfmt v0.21.7 // indirect
 	github.com/go-openapi/swag v0.22.3 // indirect
 	github.com/go-openapi/validate v0.22.1 // indirect
-	github.com/go-redis/redis v6.15.9+incompatible // indirect
+	github.com/go-redis/redis/v8 v8.11.4 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
@@ -81,8 +82,8 @@ require (
 	k8s.io/utils v0.0.0-20230505201702-9f6742963106 // indirect
 )
 
-replace gerrit.o-ran-sc.org/r/ric-plt/xapp-frame => gerrit.o-ran-sc.org/r/ric-plt/xapp-frame.git v0.9.21
+replace gerrit.o-ran-sc.org/r/ric-plt/xapp-frame => gerrit.o-ran-sc.org/r/ric-plt/xapp-frame.git v0.9.22
 
-replace gerrit.o-ran-sc.org/r/ric-plt/sdlgo => gerrit.o-ran-sc.org/r/ric-plt/sdlgo.git v0.7.0
+replace gerrit.o-ran-sc.org/r/ric-plt/sdlgo => gerrit.o-ran-sc.org/r/ric-plt/sdlgo.git v0.10.3
 
 replace gerrit.o-ran-sc.org/r/com/golog => gerrit.o-ran-sc.org/r/com/golog.git v0.0.2
